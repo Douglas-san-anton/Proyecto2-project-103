@@ -14,6 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "commander": "^12.0.0",
+    "gendiff": "^1.0.0",
     "make": "^0.8.1"
   }
 }
