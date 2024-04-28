@@ -1,9 +1,14 @@
 import _ from 'lodash';
 
+
+
 const indent = (depth, spacesCount = 4) => ' '.repeat(depth * spacesCount - 2);
 
+
 const stringify = (data, depth, mapping) => {
+
   if (!_.isObject(data)) {
+
     return String(data);
   }
 
@@ -12,6 +17,9 @@ const stringify = (data, depth, mapping) => {
 
   return `{\n${output.join('\n')}\n${indent(depth)}  }`;
 };
+
+
+
 
 const mapping = {
   root: ({ children }, depth, iter) => {
@@ -35,7 +43,13 @@ const mapping = {
   },
 };
 
+
 const renderTree = (ast) => {
+
+
+
+
+
   const iter = (node, depth) => mapping[node.type](node, depth, iter);
   return iter(ast, 0);
 };

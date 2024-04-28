@@ -15,7 +15,10 @@ const stringify = (value) => {
   return String(value);
 };
 
+
+
 const mapping = {
+
 
   unchanged: () => [],
   root: ({ children }, path, iter) => children.flatMap((node) => iter(node, path, iter)),
@@ -28,7 +31,10 @@ const mapping = {
   },
 };
 
+
 const renderPlain = (ast) => {
+
+
   const iter = (node, currentPath) => mapping[node.type](node, currentPath, iter);
   return iter(ast, []).join('\n');
 };
