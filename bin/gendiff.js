@@ -1,4 +1,5 @@
-const { program } = require('commander');
+#!usr/bin/env node
+import { program } from 'commander';
 import genDiff from '../index';
 
 program
