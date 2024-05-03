@@ -1,14 +1,14 @@
 import _ from 'lodash';
 
-
-
+// Los espacios se forman según lo especificado en la tarea: 4 espacios por defecto
+// Sin contar el marcador de 2 caracteres ('+ ', '- ', ' ').
 const indent = (depth, spacesCount = 4) => ' '.repeat(depth * spacesCount - 2);
 
-
+// Es importante resaltar correctamente esta función
 const stringify = (data, depth, mapping) => {
-
+  // guard expression
   if (!_.isObject(data)) {
-
+    // El tipo de resultado siempre debe ser una cadena de texto.
     return String(data);
   }
 
@@ -18,8 +18,8 @@ const stringify = (data, depth, mapping) => {
   return `{\n${output.join('\n')}\n${indent(depth)}  }`;
 };
 
-
-
+// El recorrido del árbol siempre debe ser en profundidad por un nivel (+1).
+// No puede ser -1, +4, o descender por 4 espacios. '    '
 
 const mapping = {
   root: ({ children }, depth, iter) => {
@@ -43,13 +43,13 @@ const mapping = {
   },
 };
 
-
+// La función debe exponer solo la interfaz que espera el cliente.
 const renderTree = (ast) => {
-
-
-
-
-
+  // 1. La profundidad del árbol es primordial, los niveles de indentación se construyen en base a ella.
+  // 2. La lógica está completamente determinada por el tipo.
+  // En el nivel superior, se realiza la comprobación del tipo, y dentro de ese nivel se encuentran todas las condiciones.
+  // La implementación puede realizarse mediante la dispatción por claves en un objeto o mediante un switch convencional
+  // Es fundamental que no haya nodos especiales tratados de manera diferente a los demás (por ejemplo, fuera del switch).
   const iter = (node, depth) => mapping[node.type](node, depth, iter);
   return iter(ast, 0);
 };
