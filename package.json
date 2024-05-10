@@ -1,22 +1,30 @@
 {
   "name": "@hexlet/code",
-  "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/Douglas-san-anton/Proyecto2-project-103/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Douglas-san-anton/Proyecto2-project-103/actions)",
+  "version": "0.0.2",
+  "description": "Compares two configuration files and shows a difference.",
   "type": "module",
   "main": "index.js",
   "bin": {
     "gendiff": "bin/gendiff.js"
   },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "engines": {
+    "node": ">=14"
   },
-  "author": "douglas",
-  "license": "ISC",
+  "scripts": {
+    "test": "npx jest"
+  },
+  "author": "Hexlet",
   "dependencies": {
-    "commander": "^12.0.0",
-    "gendiff": "^1.0.0",
+    "commander": "^7.2.0",
     "js-yaml": "^4.1.0",
-    "lodash": "^4.17.21",
-    "make": "^0.8.1"
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "eslint": "^7.27.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-jest": "^24.3.6",
+    "jest": "^27.0.3",
+    "npm-check-updates": "^12.3.0"
   }
 }
