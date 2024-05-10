@@ -1,6 +1,5 @@
 import _ from 'lodash';
 
-
 const buildDiff = (data1, data2) => {
   // Es fundamental que aquí se utilice la unión (y se realice la ordenación)
   const keys = _.union(Object.keys(data1), Object.keys(data2));
