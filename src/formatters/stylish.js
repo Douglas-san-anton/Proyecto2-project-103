@@ -13,7 +13,8 @@ const stringify = (data, depth, mapping) => {
   }
 
   const output = Object.entries(data).map(
-    ([key, value]) => mapping.unchanged({ key, value }, depth + 1));
+    ([key, value]) => mapping.unchanged({ key, value }, depth + 1),
+  );
 
   return `{\n${output.join('\n')}\n${indent(depth)}  }`;
 };
