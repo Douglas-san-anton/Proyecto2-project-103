@@ -1,11 +1,6 @@
 import _ from 'lodash';
 
-// La forma correcta de verificar una clave en un objeto es mediante _.has
-// El árbol no sabe nada sobre la salida y no puede preparar datos para ello
-// El árbol describe la diferencia entre objetos (no visualmente)
 
-// La forma correcta de construir un árbol es encontrar la unión de claves y realizar un único recorrido
-// Cada nodo debe tener un tipo. Hay un total de 5 (por la cantidad de diferentes comportamientos posibles)
 const buildDiff = (data1, data2) => {
   // Es fundamental que aquí se utilice la unión (y se realice la ordenación)
   const keys = _.union(Object.keys(data1), Object.keys(data2));
@@ -33,7 +28,6 @@ const buildDiff = (data1, data2) => {
         children: buildDiff(data1[key], data2[key]),
       };
     }
-    // En una comparación simple, los arrays se compararían incorrectamente, por lo tanto, se utiliza isEqual.
     if (!_.isEqual(data1[key], data2[key])) {
       return {
         key,

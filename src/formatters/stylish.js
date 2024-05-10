@@ -12,7 +12,8 @@ const stringify = (data, depth, mapping) => {
     return String(data);
   }
 
-  const output = Object.entries(data).map(([key, value]) => mapping.unchanged({ key, value }, depth + 1));
+  const output = Object.entries(data).map(([key, value]) =>
+    mapping.unchanged({ key, value }, depth + 1));
 
   return `{\n${output.join('\n')}\n${indent(depth)}  }`;
 };
@@ -29,9 +30,12 @@ const mapping = {
     const output = children.flatMap((node) => mapping[node.type](node, depth + 1, iter));
     return `${indent(depth)}  ${key}: {\n${output.join('\n')}\n${indent(depth)}  }`;
   },
-  added: (node, depth) => `${indent(depth)}+ ${node.key}: ${stringify(node.value, depth, mapping)}`,
-  deleted: (node, depth) => `${indent(depth)}- ${node.key}: ${stringify(node.value, depth, mapping)}`,
-  unchanged: (node, depth) => `${indent(depth)}  ${node.key}: ${stringify(node.value, depth, mapping)}`,
+  added: (node, depth) =>
+    `${indent(depth)}+ ${node.key}: ${stringify(node.value, depth, mapping)}`,
+  deleted: (node, depth) =>
+    `${indent(depth)}- ${node.key}: ${stringify(node.value, depth, mapping)}`,
+  unchanged: (node, depth) =>
+    `${indent(depth)}  ${node.key}: ${stringify(node.value, depth, mapping)}`,
   changed: (node, depth) => {
     const { key, value1, value2 } = node;
 
@@ -44,11 +48,6 @@ const mapping = {
 
 // La función debe exponer solo la interfaz que espera el cliente.
 const renderTree = (ast) => {
-  // 1. La profundidad del árbol es primordial, los niveles de indentación se construyen en base a ella.
-  // 2. La lógica está completamente determinada por el tipo.
-  // En el nivel superior, se realiza la comprobación del tipo, y dentro de ese nivel se encuentran todas las condiciones.
-  // La implementación puede realizarse mediante la dispatción por claves en un objeto o mediante un switch convencional
-  // Es fundamental que no haya nodos especiales tratados de manera diferente a los demás (por ejemplo, fuera del switch).
   const iter = (node, depth) => mapping[node.type](node, depth, iter);
   return iter(ast, 0);
 };

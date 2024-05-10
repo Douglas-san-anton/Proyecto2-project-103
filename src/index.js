@@ -8,7 +8,7 @@ import parse from './parsers.js';
 import buildTree from './treeBuilder.js';
 
 const buildFullPath = (filepath) => path.resolve(process.cwd(), filepath);
-// Tomamos el formato de los datos basado en la extensión del archivo, quitando el punto de la cadena
+// Tomamos el formato de los datos basado en la extensión del archivo
 const extractFormat = (filepath) => path.extname(filepath).slice(1);
 // Trabajamos con la fábrica de parsers
 const getData = (filepath) => parse(fs.readFileSync(filepath, 'utf-8'), extractFormat(filepath));

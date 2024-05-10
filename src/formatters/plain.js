@@ -15,10 +15,10 @@ const stringify = (value) => {
   return String(value);
 };
 
-// Las cadenas están ubicadas en un solo lugar. La estructura y el resultado son visibles de inmediato.
+// Las cadenas están ubicadas en un solo lugar.
 // No hay intento de eliminar completamente la duplicación (por ejemplo, la palabra "Property").
 const mapping = {
-  // Si el formateador está construido con un switch case, en todas partes se devolverán cadenas, y en
+  // Si el formateador está construido con un switch case, en todas partes se devolverán cadenas
   // "unchanged" - null, como indicador de la falta de valor.
   unchanged: () => [],
   root: ({ children }, path, iter) => children.flatMap((node) => iter(node, path, iter)),
